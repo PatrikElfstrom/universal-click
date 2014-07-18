@@ -12,6 +12,7 @@
         return this.each(function () {
 
             $(this).on('click touchstart', function(event) {
+                event.stopPropagation();
 
                 // check if event has been handled
                 if(event.handled !== true) {
@@ -24,31 +25,67 @@
 
                         // Run the callback if the user didn't selected anything
                         if(userSelection.anchorOffset === userSelection.focusOffset) {
-                            if(callback) callback(event);
+
+                            if(typeof callback === 'object' && typeof callback.click === 'function') {
+
+                                callback.click(event);
+
+                            } else if(typeof callback === 'function') {
+
+                                callback(event);
+
+                            }
+
+                        } else {
+
+                            if(typeof callback === 'object' && typeof callback.select === 'function') {
+
+                                callback.select(event, userSelection);
+
+                            }
+
                         }
 
                     } else {
 
                         // Touch click event
-                        $(this).on('touchend', function(){
-                            event.stopPropagation();
-                            event.preventDefault();
+                        $(this).on('touchend', function() {
 
-                            if(callback) callback(event);
+                            if(typeof callback === 'object' && typeof callback.touchstart === 'function') {
+
+                                callback.touchstart(event);
+
+                            } else if(typeof callback === 'function') {
+
+                                callback(event);
+
+                            }
 
                             $(this).off('touchend');
+
+                            return false;
                         });
 
                         // Touch move/scroll event
-                        $(this).on('touchmove', function(){
+                        $(this).on('touchmove', function() {
+
+                            if(typeof callback === 'object' && typeof callback.touchmove === 'function') {
+                                
+                                callback.touchmove(event);
+
+                            }
+
                             $(this).off('touchend');
                         });
 
                     }
 
                     event.handled = true;
+
                 } else {
+
                     return false;
+
                 }
             });
 
