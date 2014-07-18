@@ -11,7 +11,7 @@
     $.fn.universalClick = function ( callback ) {
         return this.each(function () {
 
-            $(this).on('click touchstart', function() {
+            $(this).on('click touchstart', function(event) {
 
                 // check if event has been handled
                 if(event.handled !== true) {
