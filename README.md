@@ -7,7 +7,7 @@ without the touch click delay and the touchswipe click problem.
 ## Usage
 Just use the *universalClick* function like you would use the jQuery *click* function.
 ```javascript
-$(selector).universalClick(function() {
+$(selector).universalClick(function(event) {
 	// Click
 });
 ```
