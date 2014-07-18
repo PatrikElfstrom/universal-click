@@ -24,7 +24,7 @@
 
                         // Run the callback if the user didn't selected anything
                         if(userSelection.anchorOffset === userSelection.focusOffset) {
-                            if(callback) callback();
+                            if(callback) callback(event);
                         }
 
                     } else {
@@ -34,7 +34,7 @@
                             event.stopPropagation();
                             event.preventDefault();
 
-                            if(callback) callback();
+                            if(callback) callback(event);
 
                             $(this).off('touchend');
                         });
