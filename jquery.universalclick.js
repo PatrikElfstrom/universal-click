@@ -16,7 +16,7 @@
                 // check if event has been handled
                 if(event.handled !== true) {
 
-                	// Call the callback if the event was a click
+                    // Call the callback if the event was a click
                     if(event.type === 'click') {
                         
                         if(callback) callback();
