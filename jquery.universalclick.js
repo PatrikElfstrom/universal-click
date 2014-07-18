@@ -19,7 +19,13 @@
                     // Call the callback if the event was a click
                     if(event.type === 'click') {
                         
-                        if(callback) callback();
+                        // get user selection
+                        var userSelection = window.getSelection();
+
+                        // Run the callback if the user didn't selected anything
+                        if(userSelection.anchorOffset === userSelection.focusOffset) {
+                            if(callback) callback();
+                        }
 
                     } else {
 
