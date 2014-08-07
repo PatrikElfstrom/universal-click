@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <style>
+            .entry-content {
+                margin: 0 auto;
+                max-width: 620px;
+                max-height: 300px;
+                position: relative;
+                overflow: hidden;
+
+                -webkit-transition: all ease-in-out 300ms;
+                -moz-transition: all ease-in-out 300ms;
+                -ms-transition: all ease-in-out 300ms;
+                -o-transition: all ease-in-out 300ms;
+                transition: all ease-in-out 300ms;
+            }
+
+            .entry-content:after {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 2;
+                pointer-events: none;
+                content: '';
+                background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%);
+
+                -webkit-transition: all ease-in-out 300ms;
+                -moz-transition: all ease-in-out 300ms;
+                -ms-transition: all ease-in-out 300ms;
+                -o-transition: all ease-in-out 300ms;
+                transition: all ease-in-out 300ms;
+            }
+
+            .entry-content.open:after {
+                opacity: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="entry-content">
+            <h1>jQuery Universal Click</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae consequat magna. Maecenas leo nisl, aliquam at egestas nec, pharetra a lorem. Etiam pellentesque, lectus eu tempus placerat, ligula metus euismod ante, eu vehicula lectus felis et quam. Nulla in mi massa. Nulla viverra nisl ipsum, nec blandit nunc vestibulum vel. Pellentesque in arcu sed nunc interdum semper. Nullam sed elit viverra, ultricies ante in, ultricies magna.</p>
+
+            <p>Suspendisse potenti. Duis ac aliquam augue, sed laoreet felis. Etiam interdum lectus lectus, sed tristique dolor eleifend at. Nulla facilisi. Etiam fermentum tempor ornare. Nulla pretium quam at vestibulum molestie. Nunc ac urna laoreet nisi aliquet mattis. Aliquam erat volutpat. Suspendisse rhoncus metus id ipsum lacinia accumsan.</p>
+
+            <p>Suspendisse a sem adipiscing, rutrum leo a, fermentum ligula. Maecenas vehicula id ipsum faucibus pharetra. Mauris sem nisi, eleifend eu massa non, consectetur ornare libero. Proin eu lectus justo. Nulla facilisi. Sed et orci vel arcu sagittis mattis ultrices eget enim. Duis vel lorem lectus. Fusce in metus volutpat, interdum ante non, sagittis sem. Praesent ac venenatis ligula.</p>
+
+            <p>Mauris molestie sit amet eros sit amet imperdiet. Ut cursus in orci id commodo. Nunc pellentesque lobortis urna, eu porttitor mi consequat vitae. Integer ullamcorper lorem a turpis luctus ultricies. Phasellus imperdiet tortor ac tellus posuere, vel fringilla nulla ultrices. Vivamus condimentum nunc diam, ac dignissim felis luctus ut. Fusce non ultrices erat. Vivamus elementum euismod nisl quis volutpat. Nullam id neque mauris. Praesent rutrum dui in elit accumsan blandit. Nulla facilisi. Aenean pretium, augue at pretium luctus, eros augue blandit mauris, quis hendrerit enim magna sed tellus. Vivamus nisi lacus, posuere nec risus a, facilisis tempus nunc. Nullam lobortis urna a dignissim suscipit. Aenean ut mi felis. Sed aliquam dapibus lorem at fringilla.</p>
+
+            <p>Maecenas scelerisque vel diam ac fermentum. Cras euismod mollis magna eget egestas. Sed id diam hendrerit, porttitor ante sed, sodales nibh. Quisque vehicula ut augue id ullamcorper. Fusce at tristique purus, ut venenatis ante. Vestibulum sodales tristique orci, a iaculis turpis adipiscing sed. Nam consequat euismod tellus ac hendrerit. Donec ornare nibh tellus, in viverra erat viverra et. Duis dui purus, volutpat ut est vel, pretium ultrices turpis. Nullam eu risus et ante aliquam pharetra et non ligula. Praesent nec commodo risus. Nulla at nulla pharetra, pharetra neque sed, tincidunt arcu. Vivamus et tortor odio. Duis dictum velit vel nulla elementum posuere.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae consequat magna. Maecenas leo nisl, aliquam at egestas nec, pharetra a lorem. Etiam pellentesque, lectus eu tempus placerat, ligula metus euismod ante, eu vehicula lectus felis et quam. Nulla in mi massa. Nulla viverra nisl ipsum, nec blandit nunc vestibulum vel. Pellentesque in arcu sed nunc interdum semper. Nullam sed elit viverra, ultricies ante in, ultricies magna.</p>
+
+            <p>Suspendisse potenti. Duis ac aliquam augue, sed laoreet felis. Etiam interdum lectus lectus, sed tristique dolor eleifend at. Nulla facilisi. Etiam fermentum tempor ornare. Nulla pretium quam at vestibulum molestie. Nunc ac urna laoreet nisi aliquet mattis. Aliquam erat volutpat. Suspendisse rhoncus metus id ipsum lacinia accumsan.</p>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="jquery.universalclick.min.js"></script>
+        <script type="text/javascript">
+            (function($) {
+                var entryContent = $('.entry-content'),
+                    entryContentHeight = 0,
+                    open = false;
+
+                entryContent.universalClick(function(event) {
+                    if(open === false) {
+
+                        $('> *', entryContent).each(function(){
+                            entryContentHeight += $(this).outerHeight(true);
+                        });
+
+                        entryContent.addClass('open').css('max-height', entryContentHeight);
+
+                        entryContentHeight = 0;
+                        open = true;
+
+                    } else {
+                        
+                        entryContent.removeClass('open').attr('style', '');
+                        open = false;
+
+                    }
+                });
+
+            })(jQuery);
+        </script>
+    </body>
+</html>
