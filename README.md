@@ -31,3 +31,7 @@ $(selector).universalClick({
 ```
 
 *select* also returns the window.getSelection object which can be used to get the text the user selected.
+
+## Demo
+https://patrikelfstrom.github.io/universal-click/  
+This demo is an example of usage when you want mobile and desktop support and don't want a click event on text select.
